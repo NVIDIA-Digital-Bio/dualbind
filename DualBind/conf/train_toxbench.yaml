@@ -1,0 +1,65 @@
+seed: 6 # random seed, use [6,7,8] for reproducibility
+ckpt_path: null # resume from checkpoint
+name: DualBind-ToxBench # experiment name, which also specifies the wandb group
+rootdir: ${hydra:runtime.cwd}
+
+global_batch_size: ${multiply:${data.batch_size},${trainer.num_nodes},${trainer.devices}}
+
+model:
+  hidden_size: 256 # number of hidden dimensions
+  mpn_depth: 3 # depth of the message passing network
+  num_heads: 4 # number of attention heads in the Transformer encoder layer
+  dropout: 0.1 # dropout rate
+  threshold: 10.0 # distance cutoff threshold
+  vocab_size: 38 # number of atom types, vocab_size=len(ATOM_TYPES)
+  aa_size: 21 # number of residue types, aa_size=len(ALPHABET)
+  max_residue_atoms: 14 # max number of residue atoms
+  loss_ratio: 2 # loss = ratio * loss_dsm + loss_mse
+  eps_scaling: true # use esp scaling technique in the DSM loss
+  use_mtl_loss: false  # use MTLLoss implementation with adaptive params
+  optimizer:
+    lr: 5e-4 # learning rate
+    anneal_rate: 0.95 # multiplicative factor of learning rate decay
+  
+data:
+  batch_size: 16
+  num_workers: 16
+  raw_data_path_csv: path/to/your/dataset/dataset.csv # Replace with path to your CSV file containing paths to raw training data
+  data_prefix_path: path/to/your/dataset # Replace with path to your dataset directory containing the raw data files
+  train:
+    batch_size: ${data.batch_size}
+  val:
+    batch_size: ${data.batch_size}
+  test:
+    batch_size: ${data.batch_size}
+
+trainer:
+  num_nodes: 1
+  devices: 8 # devices per node
+  strategy: auto
+  limit_train_batches: null # limit to training for debugging
+  limit_val_batches: null # limit to validation for debugging
+  max_epochs: 105 # number of epochs
+  gradient_clip_val: 1.0 # max norm of the gradients
+  val_check_interval: 1.0 # interval to check validation
+  check_val_every_n_epoch: 1 # Only perform validation every x epochs
+  deterministic: False # deterministic run
+  accumulate_grad_batches: 1 # gradient accumulation
+  default_root_dir: null
+  precision: 32
+  wandb_logger:
+    create_wandb_logger: true # set to false if you don't want to use wandb
+    project: ${name}
+    name: seed=${seed}-eps_scaling=${model.eps_scaling}-global_batch_size=${global_batch_size}-loss_ratio=${model.loss_ratio}-lr=${model.optimizer.lr}-anneal_rate=${model.optimizer.anneal_rate}-dropout=${model.dropout}
+  callbacks:
+    model_checkpoint:
+      monitor: val/qualified_rmse
+      mode: min
+      dirpath: path/to/your/checkpoint/directory # Replace with path to directory where you want to save model checkpoints during training
+      save_top_k: 1
+      save_last: true
+    early_stopping:
+      monitor: val/qualified_rmse
+      mode: min
+      min_delta: 0.00
+      patience: 50
