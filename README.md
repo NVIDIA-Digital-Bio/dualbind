@@ -4,7 +4,7 @@
 This repository contains the PyTorch implementation of **DualBind**, a 3D structure-based deep learning model with a dual-loss framework for accurate and fast protein-ligand binding affinity prediction, along with scripts to benchmark DualBind on the **ToxBench** AB-FEP dataset.
 
 <p align="center">
-<img src="./assets/toxbench_task.png" width="400"/>
+<img src="./assets/toxbench_task.png" width="500"/>
 </p>
 
 
@@ -43,7 +43,7 @@ python train_toxbench.py
 ```
 
 ### Inference on ToxBench
-You can use our ToxBench-trained DualBind checkpoint for inference. The latested DualBind checkpoint is available [here (TODO)](https://github.com/NVIDIA-Digital-Bio/dualbind).
+You can use our ToxBench-trained DualBind checkpoint (available [here (TODO)](https://github.com/NVIDIA-Digital-Bio/dualbind)) for inference.
 
 1. Download the DualBind checkpoint
 2. Configure inference parameters in `conf/inference_toxbench.yaml`, especially for protein_files and ligand_files
