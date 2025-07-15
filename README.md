@@ -72,5 +72,5 @@ url={https://openreview.net/forum?id=5lpHuVsE94}
 
 ## License
 
-The DualBind source code and checkpoint are released under an NVIDIA license for non-commercial or research purposes only. Please refer to the LICENSE file for details. 
+The DualBind source code and checkpoint are released under an NVIDIA license for non-commercial or research purposes only. Please refer to the [LICENSE](./LICENSE) file for details. 
 
