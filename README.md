@@ -1,5 +1,5 @@
 # DualBind and ToxBench
-[Paper (ICML 2025 GenBio Workshop) (TODO)](https://github.com/NVIDIA-Digital-Bio/dualbind) | [ToxBench Dataset](https://huggingface.co/datasets/karlleswing/toxbench)
+[Paper (ICML 2025 GenBio Workshop)](https://arxiv.org/abs/2507.08966) | [ToxBench Dataset](https://huggingface.co/datasets/karlleswing/toxbench)
 
 This repository contains the PyTorch implementation of **DualBind**, a 3D structure-based deep learning model with a dual-loss framework for accurate and fast protein-ligand binding affinity prediction, along with scripts to benchmark DualBind on the **ToxBench** AB-FEP dataset.
 
@@ -23,7 +23,7 @@ ToxBench is the first large-scale AB-FEP dataset designed for ML development and
 - Binding affinities computed via AB-FEP in CSV format.
 - Predefined training/validation/test splits to ensure robust model evaluation.
 
-More details about the ToxBench dataset can be found in [our paper](https://github.com/NVIDIA-Digital-Bio/dualbind). The full dataset is publicly available on [Hugging Face](https://huggingface.co/datasets/karlleswing/toxbench).
+More details about the ToxBench dataset can be found in [our paper](https://arxiv.org/abs/2507.08966). The full dataset is publicly available on [Hugging Face](https://huggingface.co/datasets/karlleswing/toxbench).
 
 
 ## DualBind on ToxBench
@@ -43,7 +43,7 @@ python train_toxbench.py
 ```
 
 ### Inference on ToxBench
-You can use our ToxBench-trained DualBind checkpoint (available [here (TODO)](https://github.com/NVIDIA-Digital-Bio/dualbind)) for inference.
+You can use our ToxBench-trained DualBind checkpoint (available [here (coming soon)](https://github.com/NVIDIA-Digital-Bio/dualbind)) for inference.
 
 1. Download the DualBind checkpoint
 2. Configure inference parameters in `conf/inference_toxbench.yaml`, especially for protein_files and ligand_files
@@ -72,4 +72,5 @@ url={https://openreview.net/forum?id=5lpHuVsE94}
 
 ## License
 
-This project is licensed under TBD.
+The DualBind source code and checkpoint are released under an NVIDIA license for non-commercial or research purposes only. Please refer to the LICENSE file for details. 
+
