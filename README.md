@@ -43,7 +43,7 @@ python train_toxbench.py
 ```
 
 ### Inference on ToxBench
-You can use our ToxBench-trained DualBind checkpoint (available [here (coming soon)](https://github.com/NVIDIA-Digital-Bio/dualbind)) for inference.
+You can use our ToxBench-trained DualBind checkpoint (available [on NGC](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/dualbind_v1_toxbench)) for inference.
 
 1. Download the DualBind checkpoint
 2. Configure inference parameters in `conf/inference_toxbench.yaml`, especially for protein_files and ligand_files
