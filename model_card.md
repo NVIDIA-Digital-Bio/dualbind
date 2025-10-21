@@ -1,77 +1,93 @@
 # DualBind Overview
 
-## Description: <br>
+## Description
+
 DualBind is a state-of-the-art 3D structure-based deep learning model that predicts protein-ligand binding affinity, which plays a critical role in drug discovery. It leverages 3D structural information and employs a dual-loss framework to effectively learn the binding energy landscape. Trained on AB-FEP-calculated labels, DualBind achieves accurate and generalizable predictions at a fraction of the computational cost of physics-based approaches.
 
-This model is ready for non-commercial use and is for research and development only.<br>
+This model is ready for non-commercial use and is for research and development only.
 
-### License/Terms of Use: <br> 
-DualBind is released under NSCLv1. <br> 
+### License/Terms of Use
 
-### Deployment Geography: <br>
-Global <br>
+DualBind is released under NSCLv1.
 
-### Use Case: <br>
-DualBind can be used by researchers and practitioners interested in predicting protein-ligand binding affinities. <br>
+### Deployment Geography
 
-### Release Date:  <br>
-Github [07/17/2025] via [NVIDIA-Digital-Bio/dualbind](https://github.com/NVIDIA-Digital-Bio/dualbind) <br> 
+Global
 
-## Reference(s): <br>
-The associated paper can be found [here](https://arxiv.org/abs/2507.08966).  <br> 
+### Use Case
+
+DualBind can be used by researchers and practitioners interested in predicting protein-ligand binding affinities.
+
+### Release Date
+
+Github [07/17/2025] via [NVIDIA-Digital-Bio/dualbind](https://github.com/NVIDIA-Digital-Bio/dualbind)
+
+## Reference(s)
+
+The associated paper can be found [here](https://arxiv.org/abs/2507.08966).
 
 [1] Meng Liu, Karl Leswing, Simon KS Chu, Farhad Ramezanghorbani, Griffin Young, Gabriel Marques, Prerna Das et al. "ToxBench: A Binding Affinity Prediction Benchmark with AB-FEP-Calculated Labels for Human Estrogen Receptor Alpha." arXiv preprint arXiv:2507.08966 (2025).
 
-## Model Architecture: <br> 
-**Architecture Type:** Graph Neural Networks (GNN) <br>
-**Network Architecture:** Transformer, Frame Averaging Neural Network (FANN) <br>
+## Model Architecture
+
+**Architecture Type:** Graph Neural Networks (GNN)  
+**Network Architecture:** Transformer, Frame Averaging Neural Network (FANN)
 
 DualBind employs a dual-loss framework, which combines supervised mean squared error (MSE) loss with unsupervised denoising score matching (DSM) loss to effectively learn the binding energy function. The network architecture is a 3D-invariant graph neural network. Specifically, it is built based on Frame Averaging Neural Network (FANN), within which Transformer layers are used.
 
-## Input: <br>
-**Input Type(s):** Text (Protein, Ligand) <br>
-**Input Format(s):** Text: String (Protein Data Bank (PDB) files for protein), String (Structural Data Files (SDF) for ligand) <br>
-**Input Parameters:** One-Dimensional (1D) (SDF and PDB files) <br>
-**Other Properties Related to Input:** The PDB file includes the 3D structure information of the protein and the SDF file includes the 3D structure information of the ligand. <br>
+## Input
 
+**Input Type(s):** Text (Protein, Ligand)  
+**Input Format(s):** Text: String (Protein Data Bank (PDB) files for protein), String (Structural Data Files (SDF) for ligand)  
+**Input Parameters:** One-Dimensional (1D) (SDF and PDB files)  
+**Other Properties Related to Input:** The PDB file includes the 3D structure information of the protein and the SDF file includes the 3D structure information of the ligand.
 
-## Output: <br>
-**Output Type(s):** Number <br>
-**Output Format:** Number: Floating number <br>
-**Output Parameters:** One-Dimensional (1D) <br>
-**Other Properties Related to Output:** The floating number represents the predicted binding affinity. <br>
+## Output
 
-Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA’s hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions. <br>   
+**Output Type(s):** Number  
+**Output Format:** Number: Floating number  
+**Output Parameters:** One-Dimensional (1D)  
+**Other Properties Related to Output:** The floating number represents the predicted binding affinity.
 
-## Software Integration : <br>
-**Runtime Engine(s):** PyTorch <br>
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA's hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
 
-**Supported Hardware Microarchitecture Compatibility:** <br>
-NVIDIA Ampere (tested on A100) <br>
+## Software Integration
 
-**[Preferred/Supported] Operating System(s):** <br>
-* [Linux] <br>
+**Runtime Engine(s):** PyTorch
 
-## Model Version(s): <br>
-DualBind v1.0 (trained on ToxBench, with ~1M parameters) <br> 
+**Supported Hardware Microarchitecture Compatibility:**  
+NVIDIA Ampere (tested on A100)
 
-# Training and Testing Datasets: <br>   
-DualBind is trained and tested on the [ToxBench dataset](https://arxiv.org/abs/2507.08966). <br> 
+**[Preferred/Supported] Operating System(s):**  
+* [Linux]
 
-## Training/Testing Dataset: <br>
+## Model Version(s)
 
-**Link:** [ToxBench](https://huggingface.co/datasets/karlleswing/toxbench) <br>
-**Data Collection Method by dataset:** 
-Synthetic (complex structures are generated by Schrodinger's docking method) <br>
-**Labeling Method by dataset:** 
-Synthetic (affinity labels are computed by Schrodinger's physics-based computational method, ABFEP) <br>
-**Properties:** ToxBench is the first large-scale AB-FEP dataset designed for ML development and focused on a single pharmaceutically critical target, Human Estrogen Receptor Alpha (ERa). ToxBench contains 8,770 ERa-ligand complex structures with binding free energies computed via AB-FEP. Using a 70%/15%/15% random split and ensuring no SMILES overlap, we obtain 5,651 training data, 1,202 validation data, and 1,204 test data. <br>
+DualBind v1.0 (trained on ToxBench, with ~1M parameters)
 
-## Inference: <br>
-**Engine:** PyTorch <br>
-**Test Hardware:** A100 <br>
+# Training and Testing Datasets
 
-## Ethical Considerations: <br>
+DualBind is trained and tested on the [ToxBench dataset](https://arxiv.org/abs/2507.08966).
+
+## Training/Testing Dataset
+
+**Link:** [ToxBench](https://huggingface.co/datasets/karlleswing/toxbench)
+
+**Data Collection Method by dataset:**  
+Synthetic (complex structures are generated by Schrodinger's docking method)
+
+**Labeling Method by dataset:**  
+Synthetic (affinity labels are computed by Schrodinger's physics-based computational method, ABFEP)
+
+**Properties:**  
+ToxBench is the first large-scale AB-FEP dataset designed for ML development and focused on a single pharmaceutically critical target, Human Estrogen Receptor Alpha (ERα). ToxBench contains 8,770 ERα-ligand complex structures with binding free energies computed via AB-FEP. Using a 70%/15%/15% random split and ensuring no SMILES overlap, we obtain 5,651 training data, 1,202 validation data, and 1,204 test data.
+
+## Inference
+
+**Engine:** PyTorch  
+**Test Hardware:** A100
+
+## Ethical Considerations
 
 NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. When downloaded or used in accordance with our terms of service, developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
 
